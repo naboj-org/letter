@@ -1,9 +1,9 @@
-FROM golang:1.18-bullseye as build
+FROM golang:1.21-bookworm as build
 WORKDIR /build
 COPY . .
 RUN go build -o letter
 
-FROM texlive/texlive:latest
+FROM dxjoke/tectonic-docker:latest
 WORKDIR /app
 RUN adduser texuser
 USER texuser

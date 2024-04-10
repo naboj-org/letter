@@ -1,26 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
-	"naboj.org/letter/web"
-	"os"
+	"naboj.org/letter/pkg"
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
-
-	r := gin.New()
-	r.Use(gin.Recovery())
-
-	token, present := os.LookupEnv("AUTH_TOKEN")
-	if !present {
-		log.Println("AUTH_TOKEN is not configured, authentication is disabled.")
-	} else {
-		r.Use(web.AuthHandler(token))
+	r := pkg.NewRouter()
+	err := r.Run()
+	if err != nil {
+		log.Panic(err)
 	}
-
-	r.POST("/sync", web.GenerateSynchronously)
-	r.POST("/async", web.GenerateAsynchronously)
-	r.Run()
 }

@@ -11,11 +11,11 @@ Designed to be run in a Docker container.
 
 ## Usage
 
-Letter accepts input files in uncompressed `.tar` archive. This archive should contain
-all resources needed for your document. Letter builds the document with LuaLaTeX
+Letter accepts input files in a `.zip` archive. This archive should contain
+all resources needed for your document. Letter builds the document with [Tectonic](https://tectonic-typesetting.github.io/en-US/)
 and provides you with the resulting PDF file.
 
-### Synchornous API `POST /sync`
+### Synchronous API `POST /sync`
 
 This endpoint builds the PDF synchronously and sends it in the HTTP response.
 Expects multipart form request with the following fields:
@@ -24,7 +24,7 @@ Expects multipart form request with the following fields:
 
 On success, Letter returns the generated PDF file. When an error happens,
 Letter returns JSON response containing `error` (error description)
-and `tex_output` (LuaLaTeX log).
+and `tectonic_output` (Tectonic log).
 
 ### Asynchronous API `POST /async`
 
@@ -34,7 +34,7 @@ Expects the same fields as the synchronous API, plus:
 
 The callback URL will receive a POST request from Letter with multipart data:
 - `file` - the resulting PDF
-- `tex_output` - LuaLaTeX log
+- `tectonic_output` - Tectonic log
 - `error` - error description (if available)
 
 ### Authentication
@@ -52,6 +52,5 @@ this can be changed using `PORT` environment variable.
 
 ### Requirements
 
-- GoLang 1.18 (or newer) 
-- latexmk
-- lualatex
+- GoLang 1.21 (or newer) 
+- Tectonic
