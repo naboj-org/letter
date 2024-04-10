@@ -1,3 +1,3 @@
 package pkg
 
-const VERSION = "2024.1"
+const VERSION = "2024.2"
