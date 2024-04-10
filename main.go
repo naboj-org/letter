@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+	log.Printf("Letter v.%v\n", pkg.VERSION)
+
 	r := pkg.NewRouter()
 	err := r.Run()
 	if err != nil {

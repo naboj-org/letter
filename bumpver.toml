@@ -1,0 +1,15 @@
+[bumpver]
+current_version = "2023.99"
+version_pattern = "YYYY.INC1"
+commit_message = "🎉 Release {new_version}"
+commit = true
+tag = true
+push = true
+
+[bumpver.file_patterns]
+"pkg/version.go" = [
+    'const VERSION = "{version}"',
+]
+"bumpver.toml" = [
+    'current_version = "{version}"',
+]
