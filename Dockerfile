@@ -1,4 +1,4 @@
-FROM golang:1.21-bookworm as build
+FROM golang:1.21-bullseye as build
 WORKDIR /build
 COPY . .
 RUN go build -o letter
